@@ -9,10 +9,25 @@ public class Diary {
     boolean isLocked;
 
     public void addEntries(String message) {
-        if (message != null && !message.trim().isEmpty()) {
-            entries.add(message);
-        } else {
-            System.out.println("We are very sorry but it seems you might have added an incorrect entry :( ");
-        }
+       validateString(message, "We are very sorry but it seems you might have added an incorrect entry :( ");
+        entries.add(message);
+    }
+
+    public ArrayList <String> getEntries (){
+        return entries;
+    };
+
+    public void changePin (String newPin){
+        validateString(newPin, "Invalid pin code, please try again");
+        pin = newPin;
+    }
+
+    public String getPin(){
+        return pin;
+    }
+
+    public void validateString (String string, String message){
+           if (string == null || string.trim().isEmpty()) throw new IllegalArgumentException(message);
     }
 }
+
